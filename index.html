@@ -1,64 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Poker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
-  <div class="card-holder">
-    <div class="img-holder">
-      <div class="front">
-        <img src="img/clubs_2.png" alt="">
-      </div>
-      <div class="back">
-        <img src="img/back.png" alt="">
-      </div>
-    </div>
-    <div class="img-holder">
-      <div class="front">
-        <img src="img/clubs_2.png" alt="">
-      </div>
-      <div class="back">
-        <img src="img/back.png" alt="">
-      </div>
-    </div>
-    <div class="img-holder">
-      <div class="front">
-        <img src="img/clubs_2.png" alt="">
-      </div>
-      <div class="back">
-        <img src="img/back.png" alt="">
-      </div>
-    </div>
-    <div class="img-holder">
-      <div class="front">
-        <img src="img/clubs_2.png" alt="">
-      </div>
-      <div class="back">
-        <img src="img/back.png" alt="">
-      </div>
-    </div>
-    <div class="img-holder">
-      <div class="front">
-        <img src="img/clubs_2.png" alt="">
-      </div>
-      <div class="back">
-        <img src="img/back.png" alt="">
-      </div>
-    </div>
-  </div>
 
-  <div class="btn-holder">
-    <button>Start</button>
+<body>
+  <div class="content">
+    <div class="top">
+      <div class="wins">
+        <table class="wins-table">
+          <tr>
+            <td>ROYAL FLUSH</td>
+            <td>250</td>
+          </tr>
+          <tr>
+            <td>STRAIGHT FLUSH</td>
+            <td>60</td>
+          </tr>
+          <tr>
+            <td>FOUR OF A KIND</td>
+            <td>35</td>
+          </tr>
+          <tr>
+            <td>FULL HOUSE</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>FLUSH</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>STRAIGHT</td>
+            <td>6</td>
+          </tr>
+          <tr>
+            <td>THREE OF A KIND</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>TWO PAIR</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>JACK OR BETTER</td>
+            <td>2</td>
+          </tr>
+        </table>
+      </div>
+      <div class="credit_ctn">
+        <div class="credit">
+          <h1 class="credit__title">Credit</h1>
+          <h1 class="credit__value "></h1>
+          <h2>Bet</h2>
+          <h2 class="bet__value">5</h2>
+
+        </div>
+
+        <div class="win_cont"></div>
+      </div>
+    </div>
+
+    <div class="card-holder">
+      <div class="img-holder">
+        <div class="front">
+          <img src="img/clubs_2.png" alt="">
+        </div>
+        <div class="back">
+          <img src="img/back.png" alt="">
+        </div>
+      </div>
+      <div class="img-holder">
+        <div class="front">
+          <img src="img/clubs_2.png" alt="">
+        </div>
+        <div class="back">
+          <img src="img/back.png" alt="">
+        </div>
+      </div>
+      <div class="img-holder">
+        <div class="front">
+          <img src="img/clubs_2.png" alt="">
+        </div>
+        <div class="back">
+          <img src="img/back.png" alt="">
+        </div>
+      </div>
+      <div class="img-holder">
+        <div class="front">
+          <img src="img/clubs_2.png" alt="">
+        </div>
+        <div class="back">
+          <img src="img/back.png" alt="">
+        </div>
+      </div>
+      <div class="img-holder">
+        <div class="front">
+          <img src="img/clubs_2.png" alt="">
+        </div>
+        <div class="back">
+          <img src="img/back.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-holder">
+      <button class="btn credit__add">Add credit</button>
+      <button class="btn bet__add">Bet</button>
+      <button class="btn deal">Start</button>
+    </div>
   </div>
 
   <script src="js/Card.js"></script>
   <script src="js/Deck.js"></script>
   <script src="js/Wins.js"></script>
   <script src="js/Game.js"></script>
+  <script src="js/Gambling.js"></script>
 
 </body>
+
 </html>

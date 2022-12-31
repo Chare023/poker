@@ -1,7 +1,10 @@
 class Wins {
   finalCards;
-  constructor(finalCards){
+  constructor(finalCards,bet, credit){
     this.finalCards = finalCards;
+    this.bet = bet;
+    this.credit = credit;
+    this.win = document.querySelector('.win_cont');
   }
 
   isRoyalFlush(arrSign, sortedCards, allCardsValues){
@@ -13,6 +16,7 @@ class Wins {
         }
       }
       console.log('Royal Flush');
+      return true;
     }
   }
 
@@ -26,12 +30,14 @@ class Wins {
         }
       }
       console.log('Straight Flush');
+      return true;
     }
   }
 
   isFourOfAKind(arrValue){
     if (Object.values(arrValue).filter(e => e === 4).length === 1) {
       console.log('Four Of A Kind');
+      return true;
     } else {
       return false;
     }
@@ -40,7 +46,8 @@ class Wins {
   isFullHouse(arrValue){
     if (Object.values(arrValue).filter(e => e === 3).length === 1 &&
         Object.values(arrValue).filter(e => e === 2).length === 1) {
-      return console.log('Full House');
+          console.log('Full House');
+          return true;
     } else {
       return false;
     }
@@ -48,7 +55,8 @@ class Wins {
 
   isFlush(arrSign){
     if(Object.keys(arrSign).length === 1){
-      return console.log("Flush");
+      console.log("Flush");
+      return true;
     } else {
       return false;
     }
@@ -63,12 +71,14 @@ class Wins {
       }
     }
     console.log('Straight');
+    return true;
   }
   
   isThreeOfAKind(arrValue){
     if (Object.values(arrValue).filter(e => e === 3).length === 1 &&
         Object.values(arrValue).length === 3) {
       console.log('Three Of A Kind');
+      return true;
     } else {
       return false;
     }
@@ -77,21 +87,21 @@ class Wins {
   isTwoPair(arrValue){
     if (Object.values(arrValue).filter(e => e === 2).length === 2) {
       console.log('Two Pair');
+      return true;
     } else {
       return false;
     }
   }
 
   isOnePair(arrValue){
-    if(Object.values(arrValue).length === 4){
-      Object.entries(arrValue).forEach(([key,value])=>{
-        if(key.length > 2 && value === 2){
-          console.log('Pair');
-        }
-      })
-    } else{
-      return false;
-    }
+    let par = false;
+    Object.entries(arrValue).forEach(([key,value])=>{
+          if(key.length > 2 && value === 2){
+            console.log('One Pair');
+            par = true;
+          }
+        });
+        return par;
   }
   
   getWin(){
@@ -99,7 +109,7 @@ class Wins {
     let arrVal = [];
     let unsortedCards = [];
     let sortedCards = [];
-    let allCardsValues = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+    let allCardsValues = [1,2,3,4,5,6,7,8,9,10,12,13,14,15];
     this.finalCards.forEach(card => {
       arrSign[card.sign] = (arrSign[card.sign]|| 0) + 1;
       arrVal[card.value] = (arrVal[card.value]|| 0) + 1;
@@ -112,7 +122,7 @@ class Wins {
           if (unsortedCards.includes('king') || 
               unsortedCards.includes('queen') || 
               unsortedCards.includes('jack')) {
-            sortedCards.push(11);
+            sortedCards.push(15);
           } else {
             sortedCards.push(1);
           }
@@ -138,14 +148,39 @@ class Wins {
     arrSign.sort();
     arrVal.sort();
 
-    this.isRoyalFlush(arrSign, sortedCards, allCardsValues);
-    this.isStraightFlush(arrSign, sortedCards, allCardsValues);
-    this.isFourOfAKind(arrVal);
-    this.isFullHouse(arrVal);
-    this.isFlush(arrSign);
-    this.isStraight(sortedCards, allCardsValues);
-    this.isThreeOfAKind(arrVal);
-    this.isTwoPair(arrVal);
-    this.isOnePair(arrVal);
+    this.isRoyalFlush(arrSign, sortedCards, allCardsValues) ? this.calculateWin(this.bet, 250) :
+    this.isStraightFlush(arrSign, sortedCards, allCardsValues) ? this.calculateWin(this.bet, 60) :
+    this.isFourOfAKind(arrVal) ? this.calculateWin(this.bet, 35) :
+    this.isFullHouse(arrVal) ? this.calculateWin(this.bet, 12) :
+    this.isFlush(arrSign) ? this.calculateWin(this.bet, 8) :
+    this.isStraight(sortedCards, allCardsValues) ? this.calculateWin(this.bet, 6) :
+    this.isThreeOfAKind(arrVal) ? this.calculateWin(this.bet, 4) :
+    this.isTwoPair(arrVal) ? this.calculateWin(this.bet, 3) :
+    this.isOnePair(arrVal) ? this.calculateWin(this.bet, 2) :
+    this.calculateWin(this.bet, 0);
+  }
+
+  calculateWin(bet,win){
+    let winn = 0;
+    if (win === 0) {
+      // let winn = bet * win;
+      return;
+    } else {
+      winn = bet * win;
+      let gambling = confirm("double or not");
+      if (gambling) {
+        console.log("Ovde treba pozvati funkciju za kockanje");
+        // Simulacija veca-manja
+        if (confirm('veca')) {
+          winn *= 2;
+        } else {
+          winn = 0;
+        }
+      } else {
+      }
+    }
+    this.win.classList.add('win');
+    this.win.innerHTML = 'You won ' + winn;
+    game.credit = this.credit + winn;
   }
 }
